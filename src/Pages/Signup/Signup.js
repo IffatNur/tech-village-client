@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
 
@@ -15,10 +16,16 @@ const Signup = () => {
         console.log(user);
         updateUser(data.name)
         .then(()=>{})
-        .catch(err=>console.log(err))
+        .catch(err=>{
+          console.log(err);
+          toast.error(err.message);
+        })
         navigate('/');
       })
-      .catch(error=> console.log(error))
+      .catch(error=> {
+        console.log(error);
+        toast.error(error.message);
+      })
     };
     return (
       <div className="hero min-h-screen bg-yellow-100">
@@ -59,14 +66,10 @@ const Signup = () => {
                   {...register("password", { required: true })}
                 />
                 {errors.password && <small>{errors.password?.message}</small>}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                
               </div>
               <div className="form-control mt-6">
-                <button className="btn border-0 bg-yellow-600">Login</button>
+                <button className="btn border-0 bg-yellow-600">Sign Up</button>
               </div>
             </form>
           </div>

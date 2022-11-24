@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
@@ -16,8 +17,12 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             navigate('/');
+            toast.success("Login Successful!");
         })
-        .catch(error=> console.log(error))
+        .catch(error=> {
+          console.log(error);
+          toast.error(error.message);
+        })
     };
     const handleGoogle = () =>{
         googleSignin()
@@ -25,8 +30,12 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             navigate('/');
+            toast.success('Login Successful!');
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+          console.log(err);
+          toast.error(err.message);
+        });
     }
     return (
       <div className="hero min-h-screen bg-yellow-100">
@@ -43,7 +52,11 @@ const Login = () => {
                   className="input input-bordered"
                   {...register("email", { required: true })}
                 />
-                {errors.email && <small>{errors.email?.message}</small>}
+                {errors.email && (
+                  <small role="alert" className="text-error">
+                    {errors.email?.message}
+                  </small>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -55,15 +68,20 @@ const Login = () => {
                   className="input input-bordered"
                   {...register("password", { required: true })}
                 />
-                {errors.password && <small>{errors.password?.message}</small>}
-                <label className="label">
-                  <button onClick={handleGoogle}>
-                    <FaGoogle></FaGoogle> Google Signin
-                  </button>
-                </label>
+                {errors.password && (
+                  <small role="alert" className="text-error">
+                    {errors.password?.message}
+                  </small>
+                )}
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-4">
                 <button className="btn border-0 bg-yellow-600">Login</button>
+                <button
+                  onClick={handleGoogle}
+                  className="btn btn-outline btn-wide flex text-center items-center mt-3"
+                >
+                  <FaGoogle className="mr-3"></FaGoogle> Google Sign in
+                </button>
               </div>
             </form>
           </div>

@@ -52,7 +52,7 @@ const Navbar = () => {
                 {menuItem}
               </ul>
             </div>
-            <h1 className="btn btn-ghost normal-case text-2xl "><FaHubspot className='text-blue-800 mr-3 text-3xl font-bold'></FaHubspot><span className='text-yellow-300 text-4xl font-bold'>T</span> ech <span className='text-yellow-300 text-4xl font-bold'>V</span> illage</h1>
+            <h1 className="btn btn-ghost normal-case text-2xl "><FaHubspot className='text-blue-800 mr-3 text-3xl font-bold'></FaHubspot><span className='text-blue-700 text-4xl font-bold'>T</span> ech <span className='text-blue-700 text-4xl font-bold'>V</span> illage</h1>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">{menuItem}</ul>

@@ -1,20 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loader from '../../../component/Loader';
+import CategoryCard from './CategoryCard';
 
 const Category = () => {
-    // const {data: categories = []} = useQuery({
-    //     queryKey: ['category'],
-    //     queryFn: async() =>{
-    //         const res = await fetch(`http://localhost:5000/category`);
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // });
-    // console.log(categories.length);
+    const {data: categories = [], isLoading} = useQuery({
+        queryKey: ['category'],
+        queryFn: async() =>{
+            const res = await fetch(`http://localhost:5000/category`);
+            const data = await res.json();
+            return data;
+        }
+    });
+    if(isLoading){
+        return <Loader></Loader>
+    }
     return (
-        <div>
-            
+      <div>
+        <h1 className="relative -top-36">Categories</h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative -top-36">
+          {categories.map((category) => (
+            <CategoryCard key={category._id} category={category}></CategoryCard>
+          ))}
         </div>
+      </div>
     );
 };
 
