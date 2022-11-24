@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Signup = () => {
+  const [loginRole, setLoginrole] = useState('');
     const { createUser, updateUser } = useContext(AuthContext);
     const navigate=  useNavigate();
     const {register,handleSubmit,formState: { errors }} = useForm();
@@ -27,6 +28,10 @@ const Signup = () => {
         toast.error(error.message);
       })
     };
+    const handleRadio = (role) =>{
+      setLoginrole(role);
+    }
+    console.log(loginRole);
     return (
       <div className="hero min-h-screen bg-yellow-100">
         <div className="hero-content">
@@ -66,7 +71,31 @@ const Signup = () => {
                   {...register("password", { required: true })}
                 />
                 {errors.password && <small>{errors.password?.message}</small>}
-                
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Sign up as</span>
+                </label>
+                <div className='flex justify-around'>
+                  <div className="flex items-center my-2">
+                    <input
+                      type="radio"
+                      name="role"
+                      className="radio radio-primary mr-2"
+                      onClick={()=>handleRadio('seller')}
+                    />
+                    <small>Seller</small>
+                  </div>
+                  <div className="flex items-center my-2">
+                    <input
+                      type="radio"
+                      name="role"
+                      className="radio radio-primary mr-2"
+                      onClick={()=>handleRadio('buyer')}
+                    />
+                    <small>Buyer</small>
+                  </div>
+                </div>
               </div>
               <div className="form-control mt-6">
                 <button className="btn border-0 bg-yellow-600">Sign Up</button>
