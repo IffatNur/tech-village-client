@@ -1,11 +1,14 @@
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
   return (
     <div>
-      <RouterProvider router={router}></RouterProvider>
+      <QueryClientProvider client={QueryClient}>
+        <RouterProvider router={router}></RouterProvider>
+      </QueryClientProvider>
     </div>
   );
 }

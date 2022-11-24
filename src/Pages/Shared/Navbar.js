@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHubspot } from "react-icons/fa";
+import { AuthContext } from '../../context/AuthProvider';
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
     const menuItem = (
       <React.Fragment>
         <li>
-          <Link>Home</Link>
+          <Link>{user?.displayName}</Link>
         </li>
         <li>
-          <Link>Sign Up</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to='/login'>Login</Link>
+          <Link to="/signup">Sign Up</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
         </li>
         <li>
           <Link>Logout</Link>
@@ -21,7 +26,7 @@ const Navbar = () => {
     );
     return (
       <div>
-        <div className="navbar bg-base-100 flex justify-between relative top-0">
+        <div className="navbar bg-yellow-600 flex justify-between relative top-0 text-white">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,12 +47,12 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 "
               >
                 {menuItem}
               </ul>
             </div>
-            <h1 className="btn btn-ghost normal-case text-xl"><FaHubspot className='text-blue-900 mr-3 text-2xl'></FaHubspot><span className='text-yellow-500 text-3xl'>T</span> ech <span className='text-yellow-500 text-3xl'>V</span> illage</h1>
+            <h1 className="btn btn-ghost normal-case text-2xl "><FaHubspot className='text-blue-800 mr-3 text-3xl font-bold'></FaHubspot><span className='text-yellow-300 text-4xl font-bold'>T</span> ech <span className='text-yellow-300 text-4xl font-bold'>V</span> illage</h1>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">{menuItem}</ul>

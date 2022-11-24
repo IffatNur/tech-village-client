@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { AuthContext } from '../../context/AuthProvider';
+import { FaGoogle } from "react-icons/fa";
+
 
 const Login = () => {
+    const {signin,googleSignin} = useContext(AuthContext);
+    const navigate = useNavigate();
      const {register, handleSubmit, formState: { errors }} = useForm();
      const handleLogin = (data) => {
         console.log(data);
+        signin(data.email, data.password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            navigate('/');
+        })
+        .catch(error=> console.log(error))
     };
+    const handleGoogle = () =>{
+        googleSignin()
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+            navigate('/');
+        })
+        .catch(err=>console.log(err));
+    }
     return (
       <div className="hero min-h-screen bg-yellow-100">
         <div className="hero-content">
@@ -16,7 +38,7 @@ const Login = () => {
                   <span className="label-text">Enter Your Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="email"
                   className="input input-bordered"
                   {...register("email", { required: true })}
@@ -35,13 +57,13 @@ const Login = () => {
                 />
                 {errors.password && <small>{errors.password?.message}</small>}
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <button onClick={handleGoogle}>
+                    <FaGoogle></FaGoogle> Google Signin
+                  </button>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-warning text-blue-300">Login</button>
+                <button className="btn border-0 bg-yellow-600">Login</button>
               </div>
             </form>
           </div>

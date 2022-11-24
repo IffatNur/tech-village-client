@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Signup = () => {
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
+    const navigate=  useNavigate();
+    const {register,handleSubmit,formState: { errors }} = useForm();
     const handleLogin = (data) => {
       console.log(data);
+      createUser(data.email, data.password)
+      .then(result =>{
+        const user = result.user;
+        console.log(user);
+        updateUser(data.name)
+        .then(()=>{})
+        .catch(err=>console.log(err))
+        navigate('/');
+      })
+      .catch(error=> console.log(error))
     };
     return (
       <div className="hero min-h-screen bg-yellow-100">
@@ -17,10 +27,21 @@ const Signup = () => {
             <form onSubmit={handleSubmit(handleLogin)} className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Enter Your Email</span>
+                  <span className="label-text">Your Full Name</span>
                 </label>
                 <input
                   type="text"
+                  placeholder="name"
+                  className="input input-bordered"
+                  {...register("name", { required: true })}
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Enter Your Email</span>
+                </label>
+                <input
+                  type="email"
                   placeholder="email"
                   className="input input-bordered"
                   {...register("email", { required: true })}
@@ -45,7 +66,7 @@ const Signup = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-warning text-blue-300">Login</button>
+                <button className="btn border-0 bg-yellow-600">Login</button>
               </div>
             </form>
           </div>
