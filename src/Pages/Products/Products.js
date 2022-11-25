@@ -6,7 +6,6 @@ import ProductCard from './ProductCard';
 const Products = () => {
   const [bookProduct, setBookProduct] = useState(null);
   const allProduct = useLoaderData();
-  console.log(allProduct.length);
   return (
     <div>
       {allProduct.map((product) => (

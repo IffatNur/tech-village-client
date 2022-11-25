@@ -17,7 +17,6 @@ const Category = () => {
     }
     return (
       <div>
-        <h1 className="relative -top-36">Categories</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative -top-36">
           {categories.map((category) => (
             <CategoryCard key={category._id} category={category}></CategoryCard>

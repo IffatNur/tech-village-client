@@ -16,7 +16,9 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         updateUser(data.name)
-        .then(()=>{})
+        .then(()=>{
+          registered(data.name, data.email, loginRole);
+        })
         .catch(err=>{
           console.log(err);
           toast.error(err.message);
@@ -31,7 +33,22 @@ const Signup = () => {
     const handleRadio = (role) =>{
       setLoginrole(role);
     }
-    console.log(loginRole);
+
+    const registered = (name, email, role) =>{
+      const userInfo = {name,email,role};
+      console.log(userInfo);
+      fetch(`http://localhost:5000/users`,{
+        method:'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+    }
     return (
       <div className="hero min-h-screen bg-yellow-100">
         <div className="hero-content">

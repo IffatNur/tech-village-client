@@ -1,15 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHubspot } from "react-icons/fa";
+import { FaHubspot, FaUserAlt } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider';
 
 const Navbar = () => {
   const {user} = useContext(AuthContext);
     const menuItem = (
       <React.Fragment>
-        <li>
-          <Link>{user?.displayName}</Link>
-        </li>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -21,6 +18,9 @@ const Navbar = () => {
         </li>
         <li>
           <Link>Logout</Link>
+        </li>
+        <li>
+          <Link><FaUserAlt></FaUserAlt>{user?.displayName}</Link>
         </li>
       </React.Fragment>
     );
