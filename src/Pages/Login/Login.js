@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
 import toast from 'react-hot-toast';
@@ -9,6 +9,8 @@ import toast from 'react-hot-toast';
 const Login = () => {
     const {signin,googleSignin} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
      const {register, handleSubmit, formState: { errors }} = useForm();
      const handleLogin = (data) => {
         console.log(data);
@@ -16,7 +18,19 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
-            navigate('/');
+            const userEmail = {email: user?.email}
+            fetch("http://localhost:5000/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userEmail),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                localStorage.setItem("tech-token", data.token);
+              });
+            navigate(from, {replace:true});
             toast.success("Login Successful!");
         })
         .catch(error=> {
@@ -29,6 +43,18 @@ const Login = () => {
         .then(result=>{
             const user = result.user;
             console.log(user);
+            const userEmail = { email: user?.email };
+            fetch("http://localhost:5000/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userEmail),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                localStorage.setItem("tech-token", data.token);
+              });
             navigate('/');
             toast.success('Login Successful!');
         })

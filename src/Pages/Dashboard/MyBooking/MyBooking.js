@@ -27,6 +27,7 @@ const MyBooking = () => {
           <thead>
             <tr>
               <th></th>
+              <th>Image</th>
               <th>Product Name</th>
               <th>Price</th>
               <th>Payment</th>
@@ -36,10 +37,23 @@ const MyBooking = () => {
             {bookings.map((booking, i) => (
               <tr key={i} className="hover">
                 <th>{i + 1}</th>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={booking?.img}
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </td>
                 <td>{booking.title}</td>
                 <td>{booking.price}</td>
+
                 <td>
-                  <Link>
+                  <Link to={`/dashboard/payment/${booking._id}`}>
                     <button className="btn btn-sm border-0 bg-gradient-to-r from-blue-700 to-gray-500">
                       Pay
                     </button>

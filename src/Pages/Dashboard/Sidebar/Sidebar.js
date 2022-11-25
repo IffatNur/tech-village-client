@@ -16,15 +16,15 @@ const Sidebar = () => {
           <ul className="menu p-4 w-80 bg-yellow-100 text-black font-semibold">
             {/* optional rendering  */}
             <li>
-                <Link to="/dashboard">My Bookings</Link>
+              <Link to="/dashboard">My Orders</Link>
             </li>
             <li>
-              <Link to="/dashboard">My Products</Link>
+              <Link to="/dashboard/myproduct">My Products</Link>
               <Link to="/dashboard/addproduct">Add New Products</Link>
             </li>
             <li>
-              <Link to="/dashboard/allusers">All Buyer</Link>
-              <Link to="/dashboard/adddoctor">All Seller</Link>
+              <Link to="/dashboard/allbuyer">All Buyer</Link>
+              <Link to="/dashboard/allseller">All Seller</Link>
               <Link to="/dashboard/managedoctors">Reported Items</Link>
             </li>
           </ul>

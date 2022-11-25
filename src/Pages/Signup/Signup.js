@@ -10,11 +10,9 @@ const Signup = () => {
     const navigate=  useNavigate();
     const {register,handleSubmit,formState: { errors }} = useForm();
     const handleLogin = (data) => {
-      console.log(data);
       createUser(data.email, data.password)
       .then(result =>{
         const user = result.user;
-        console.log(user);
         if (data.name && data.email && loginRole) {
           updateUser(data.name)
           .then(()=>{
@@ -23,7 +21,6 @@ const Signup = () => {
               toast.success(`Registered as ${loginRole}!`);
           })
           .catch(err=>{
-            console.log(err);
             toast.error(err.message);
           })
         }
@@ -32,7 +29,6 @@ const Signup = () => {
         }
       })
       .catch(error=> {
-        console.log(error);
         toast.error(error.message);
       })
     };
@@ -52,6 +48,19 @@ const Signup = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        const userEmail = {email}
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userEmail),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("tech-token", data.token);
+          });
       });
     }
     return (

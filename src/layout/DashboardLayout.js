@@ -9,10 +9,10 @@ const DashboardLayout = () => {
       <div>
         <Navbar></Navbar>
         <div className="block lg:flex">
-          <div class="flex-none w-80 h-52 lg:h-full mr-10 ...">
+          <div className="flex-none w-80 h-52 lg:h-full mr-10 ...">
             <Sidebar></Sidebar>
           </div>
-          <div class="grow h-14 ...">
+          <div className="grow h-14 ...">
             <Outlet></Outlet>
           </div>
         </div>
