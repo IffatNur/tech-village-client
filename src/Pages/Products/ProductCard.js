@@ -12,6 +12,7 @@ const ProductCard = ({ product, setBookProduct}) => {
     description,
     condition,
     phone,
+    posted,
   } = product;
   const current = new Date();
   const date = `${current.getDate()}/${
@@ -57,14 +58,14 @@ const ProductCard = ({ product, setBookProduct}) => {
             <br />
             <small>
               {" "}
-              <span className="font-semibold">Posted on:</span> {date}
+              <span className="font-semibold">Posted on:</span> {posted? posted: date}
             </small>
           </div>
         </div>
         <div className="card-actions justify-end">
           <label
             htmlFor="book-modal"
-            className="btn border-0 bg-gradient-to-r from-blue-700 to-gray-500 "
+            className="btn border-0 bg-gradient-to-r from-blue-700 to-gray-500"
             onClick={()=>setBookProduct(product)}
           >
             Book Now

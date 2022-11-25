@@ -15,15 +15,21 @@ const Signup = () => {
       .then(result =>{
         const user = result.user;
         console.log(user);
-        updateUser(data.name)
-        .then(()=>{
-          registered(data.name, data.email, loginRole);
-        })
-        .catch(err=>{
-          console.log(err);
-          toast.error(err.message);
-        })
-        navigate('/');
+        if (data.name && data.email && loginRole) {
+          updateUser(data.name)
+          .then(()=>{
+              registered(data.name, data.email, loginRole);
+              navigate("/");
+              toast.success(`Registered as ${loginRole}!`);
+          })
+          .catch(err=>{
+            console.log(err);
+            toast.error(err.message);
+          })
+        }
+        else{
+          toast.error('Please fillup all the field');
+        }
       })
       .catch(error=> {
         console.log(error);
@@ -36,7 +42,6 @@ const Signup = () => {
 
     const registered = (name, email, role) =>{
       const userInfo = {name,email,role};
-      console.log(userInfo);
       fetch(`http://localhost:5000/users`,{
         method:'POST',
         headers:{
@@ -99,7 +104,7 @@ const Signup = () => {
                       type="radio"
                       name="role"
                       className="radio radio-primary mr-2"
-                      onClick={()=>handleRadio('seller')}
+                      onClick={()=>handleRadio('seller')} required
                     />
                     <small>Seller</small>
                   </div>
@@ -108,7 +113,7 @@ const Signup = () => {
                       type="radio"
                       name="role"
                       className="radio radio-primary mr-2"
-                      onClick={()=>handleRadio('buyer')}
+                      onClick={()=>handleRadio('buyer')} required
                     />
                     <small>Buyer</small>
                   </div>
