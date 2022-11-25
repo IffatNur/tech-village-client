@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import BookingModal from '../../component/BookingModal';
+import useTitle from '../../Title/Title';
 import ProductCard from './ProductCard';
 
 const Products = () => {
+  useTitle("Products");
   const [bookProduct, setBookProduct] = useState(null);
   const allProduct = useLoaderData();
   return (

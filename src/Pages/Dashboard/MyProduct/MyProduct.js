@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../../../component/Loader';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../Title/Title';
 
 const MyProduct = () => {
+  useTitle("Myproducts");
     const {user} = useContext(AuthContext);
     const {data: products = [], isLoading} = useQuery({
         queryKey: ['product', user?.email],

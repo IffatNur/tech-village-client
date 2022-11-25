@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../Title/Title';
 import './AddProduct.css';
 
 const AddProduct = () => {
+  useTitle("Add Product");
   const current = new Date();
   const {user} = useContext(AuthContext);
   const {register,handleSubmit,formState: { errors },} = useForm();

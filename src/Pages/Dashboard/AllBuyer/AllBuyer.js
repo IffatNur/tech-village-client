@@ -3,8 +3,10 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Loader from '../../../component/Loader';
+import useTitle from '../../../Title/Title';
 
 const AllBuyer = () => {
+  useTitle("All Buyer");
     const { data: buyers = [], refetch, isLoading } = useQuery({
       queryKey: ["allbuyer"],
       queryFn: async () => {

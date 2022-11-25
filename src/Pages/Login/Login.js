@@ -4,9 +4,11 @@ import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import useTitle from '../../Title/Title';
 
 
 const Login = () => {
+  useTitle("Login");
     const {signin,googleSignin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();

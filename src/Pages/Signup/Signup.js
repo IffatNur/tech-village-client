@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../Title/Title';
 
 const Signup = () => {
+  useTitle("Signup");
   const [loginRole, setLoginrole] = useState('');
     const { createUser, updateUser } = useContext(AuthContext);
     const navigate=  useNavigate();

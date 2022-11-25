@@ -2,8 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../../../component/Loader';
+import useTitle from '../../../Title/Title';
 
 const AllSeller = () => {
+  useTitle("All seller");
     const { data: sellers = [], isLoading } = useQuery({
       queryKey: ["allseller"],
       queryFn: async () => {
