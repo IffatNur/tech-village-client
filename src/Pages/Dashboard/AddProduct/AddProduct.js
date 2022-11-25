@@ -45,16 +45,16 @@ const AddProduct = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("tech-token")}`,
           },
           body: JSON.stringify(productInfo),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.acknowledged){
+            if (data.acknowledged) {
               toast.success("Product added successfully!");
-            } 
-
+            }
           });
       });
   };

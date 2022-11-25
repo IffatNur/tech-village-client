@@ -28,16 +28,18 @@ const BookingModal = ({ bookProduct, setBookProduct }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("tech-token")}`,
       },
       body: JSON.stringify(bookingInfo),
     })
-    .then(res=>res.json())
-    .then(data =>{
-      console.log(data);
-      if (data.acknowledged){
-        toast.success(`${title} Booking confirmed!`);
-      } setBookProduct(null);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success(`${title} Booking confirmed!`);
+        }
+        setBookProduct(null);
+      });
     
   }
   return (
