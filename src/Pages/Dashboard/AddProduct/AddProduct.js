@@ -53,6 +53,7 @@ const AddProduct = () => {
           .then((data) => {
             console.log(data);
             if (data.acknowledged) {
+              navigate("/dashboard/myproduct");
               toast.success("Product added successfully!");
             }
           });
