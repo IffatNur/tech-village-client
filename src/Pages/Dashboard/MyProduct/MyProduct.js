@@ -35,8 +35,9 @@ const MyProduct = () => {
               <tr>
                 <th></th>
                 <th>Product Name</th>
-                <th>Status</th>
                 <th>Price</th>
+                <th>Delete</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -61,14 +62,17 @@ const MyProduct = () => {
                       Brand: {product.category_title}
                     </span>
                   </td>
-                  <td>
-                    <button className="btn btn-sm">Status</button>
-                  </td>
                   <th>
                     <button className="btn btn-ghost btn-xs">
                       {product.original_price}
                     </button>
                   </th>
+                  <td>
+                    <button className="btn btn-sm btn-error">Delete</button>
+                  </td>
+                  <td>
+                    <button className="btn btn-sm">Status</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
