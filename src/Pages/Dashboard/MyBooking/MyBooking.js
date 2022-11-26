@@ -59,7 +59,7 @@ const MyBooking = () => {
 
                 <td>
                   <Link to={`/dashboard/payment/${booking._id}`}>
-                    <button className="btn btn-sm border-0 bg-gradient-to-r from-blue-700 to-gray-500">
+                    <button  className="btn btn-sm border-0 bg-gradient-to-r from-blue-700 to-gray-500">
                       Pay
                     </button>
                   </Link>
