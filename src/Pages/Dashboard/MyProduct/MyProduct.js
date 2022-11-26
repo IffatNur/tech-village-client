@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Loader from '../../../component/Loader';
 import { AuthContext } from '../../../context/AuthProvider';
@@ -7,8 +8,9 @@ import useTitle from '../../../Title/Title';
 
 const MyProduct = () => {
   useTitle("Myproducts");
+  const [isAvailable, setIsavailable] = useState(true);
     const {user} = useContext(AuthContext);
-    const {data: products = [], isLoading} = useQuery({
+    const {data: products = [], isLoading, refetch} = useQuery({
         queryKey: ['product', user?.email],
         queryFn: async()=>{
             const res = await fetch(
@@ -27,6 +29,51 @@ const MyProduct = () => {
     if(isLoading){
         return <Loader></Loader>
     }
+
+    const handleAvailable = (id) =>{
+      fetch(`http://localhost:5000/product/${id}`, {
+        method:'PUT',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("tech-token")}`,
+        },
+      })
+      .then(res =>res.json())
+      .then(data => {
+        console.log(data);
+        refetch();
+      });
+    }
+    const handleAdvertise = (id) =>{
+      fetch(`http://localhost:5000/productad/${id}`, {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("tech-token")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          refetch();
+          toast.success('Product Advertised! (Check On Homepage)')
+        });
+    }
+
+    const handleDeleteitem = (id) =>{
+      console.log(id);
+      fetch(`http://localhost:5000/product/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("tech-token")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            refetch();
+            toast.error("Deleted Product Successfully");
+          }
+        });
+    }
     return (
       <div>
         <div className="overflow-x-auto">
@@ -38,6 +85,7 @@ const MyProduct = () => {
                 <th>Price</th>
                 <th>Delete</th>
                 <th>Status</th>
+                <th>Advertise</th>
               </tr>
             </thead>
             <tbody>
@@ -68,10 +116,42 @@ const MyProduct = () => {
                     </button>
                   </th>
                   <td>
-                    <button className="btn btn-sm btn-error">Delete</button>
+                    <button
+                      onClick={() => handleDeleteitem(product._id)}
+                      className="btn btn-sm border-0 bg-gradient-to-r from-red-700 to-red-900"
+                    >
+                      Delete
+                    </button>
                   </td>
                   <td>
-                    <button className="btn btn-sm">Status</button>
+                    {!product.status && (
+                      <button
+                        onClick={() => handleAvailable(product._id)}
+                        className="btn btn-sm"
+                      >
+                        In Stock
+                      </button>
+                    )}
+                    {product.status && (
+                      <button className="btn btn-sm " disabled>
+                        Sold
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    {!product.status && (
+                      <button
+                        onClick={() => handleAdvertise(product._id)}
+                        className="btn btn-sm btn-primary"
+                      >
+                        Advertise
+                      </button>
+                    )}
+                    {product.status && (
+                      <button className="btn btn-sm " disabled>
+                        Advertise
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

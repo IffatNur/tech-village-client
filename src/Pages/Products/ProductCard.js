@@ -13,6 +13,7 @@ const ProductCard = ({ product, setBookProduct}) => {
     condition,
     phone,
     posted,
+    _id
   } = product;
   const current = new Date();
   const date = `${current.getDate()}/${

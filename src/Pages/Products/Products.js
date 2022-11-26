@@ -11,11 +11,12 @@ const Products = () => {
   return (
     <div>
       {allProduct.map((product) => (
-        <ProductCard
+          !product.status && <ProductCard
           key={product._id}
           product={product}
           setBookProduct={setBookProduct}
         ></ProductCard>
+        
       ))}
       {bookProduct && (
         <BookingModal
