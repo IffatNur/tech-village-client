@@ -39,7 +39,7 @@ const Sidebar = () => {
                 <li>
                   <Link to="/dashboard/allbuyer">All Buyer</Link>
                   <Link to="/dashboard/allseller">All Seller</Link>
-                  <Link to="/dashboard/managedoctors">Reported Items</Link>
+                  <Link to="/dashboard/reports">Reported Items</Link>
                 </li>
               )}
             </ul>

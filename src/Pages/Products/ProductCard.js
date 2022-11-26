@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import BookingModal from '../../component/BookingModal';
 
 const ProductCard = ({ product, setBookProduct}) => {
@@ -19,6 +20,29 @@ const ProductCard = ({ product, setBookProduct}) => {
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
+
+  const handleReport = () =>{
+    const itemInfo = {
+      product_id: _id,
+      img,
+      seller_name,title,resale_price
+    }
+    fetch(`http://localhost:5000/report`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("tech-token")}`,
+      },
+      body: JSON.stringify(itemInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.acknowledged){
+          toast.success("Thanks For Your Feedback");
+        }
+      });
+  }
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl w-3/4 mx-auto my-10">
       <figure className="lg:w-2/4">
@@ -71,7 +95,7 @@ const ProductCard = ({ product, setBookProduct}) => {
           >
             Book Now
           </label>
-          <button className="btn">Report to Admin</button>
+          <button className="btn" onClick={()=>handleReport(_id)}>Report to Admin</button>
         </div>
       </div>
     </div>

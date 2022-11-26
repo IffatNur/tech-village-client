@@ -7,6 +7,7 @@ import AllBuyer from "../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 import MyProduct from "../Pages/Dashboard/MyProduct/MyProduct";
+import Report from "../Pages/Dashboard/Report/Report";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from '../Pages/Login/Login';
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allseller",
         element: <AllSeller></AllSeller>,
+      },
+      {
+        path: "/dashboard/reports",
+        element: <Report></Report>
       },
       {
         path: "/dashboard/payment/:id",

@@ -20,15 +20,11 @@ const Advertised = () => {
       <div className="flex w-3/4 mx-auto p-4 space-x-4 bg-gradient-to-r from-gray-400 to-gray-900 overflow-x-scroll mb-20">
         {products.map(
           (product, i) =>
-             (
-              <>
+             product.advertise && !product.status &&
                 <div className="carousel-item">
                   <ProductCard key={i} product={product}></ProductCard>
                 </div>
-              </>
-            )
         )}
-        {/* carousel carousel-center */}
       </div>
     </div>
   );
