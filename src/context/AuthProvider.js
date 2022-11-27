@@ -31,6 +31,7 @@ const AuthProvider = ({ children }) => {
 
     const logout = ()=>{
         setLoading(true);
+        localStorage.removeItem('tech-token');
         return signOut(auth);
     }
 

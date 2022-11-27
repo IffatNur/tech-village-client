@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 
 
 const BookingModal = ({ bookProduct, setBookProduct }) => {
-  const { title, category_title, resale_price,img } = bookProduct;
+  const { title, category_title, resale_price,img ,_id} = bookProduct;
+  console.log(bookProduct);
   const { user } = useContext(AuthContext);
   const handleSubmit = (event) =>{
     event.preventDefault();
@@ -22,7 +23,8 @@ const BookingModal = ({ bookProduct, setBookProduct }) => {
       contact,
       title,
       price,
-      img
+      img,
+      product_id: _id
     }
     fetch(`http://localhost:5000/booking`, {
       method: "POST",

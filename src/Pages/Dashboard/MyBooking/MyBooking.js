@@ -58,11 +58,22 @@ const MyBooking = () => {
                 <td>{booking.price}</td>
 
                 <td>
-                  <Link to={`/dashboard/payment/${booking._id}`}>
-                    <button className="btn btn-sm border-0 bg-gradient-to-r from-blue-700 to-gray-500">
-                      Pay
-                    </button>
-                  </Link>
+                  {!booking.paid ? (
+                    <Link to={`/dashboard/payment/${booking._id}`}>
+                      <button className="btn btn-sm border-0 from-blue-600 to-blue-800 ">
+                        Pay
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link to={`/dashboard/payment/${booking._id}`}>
+                      <button
+                        className="btn btn-sm border-0 bg-gradient-to-r from-gray-100 to-gray-300 text-white"
+                        disabled
+                      >
+                        Paid
+                      </button>
+                    </Link>
+                  )}
                 </td>
               </tr>
             ))}

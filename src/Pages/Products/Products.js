@@ -11,7 +11,7 @@ const Products = () => {
   return (
     <div>
       {allProduct.map((product) => (
-          !product.status && <ProductCard
+          !product.status && !product.paid && <ProductCard
           key={product._id}
           product={product}
           setBookProduct={setBookProduct}

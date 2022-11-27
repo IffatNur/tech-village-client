@@ -142,13 +142,8 @@ const MyProduct = () => {
                     {!product.status && (
                       <button
                         onClick={() => handleAdvertise(product._id)}
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm btn-primary" disabled={product.advertise}
                       >
-                        Advertise
-                      </button>
-                    )}
-                    {product.status && (
-                      <button className="btn btn-sm " disabled>
                         Advertise
                       </button>
                     )}
