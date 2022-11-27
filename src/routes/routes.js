@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Blog></Blog>
+        element: <Blog></Blog>,
       },
       {
         path: "/category/:id",
@@ -85,13 +85,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/reports",
-        element: <Report></Report>
+        element: <Report></Report>,
       },
       {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(`http://localhost:5000/payment/${params.id}`),
       },
     ],
   },
