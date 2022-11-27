@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/AuthProvider';
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
-
 const BookingModal = ({ bookProduct, setBookProduct }) => {
-  const { title, category_title, resale_price,img ,_id} = bookProduct;
+  const { title, category_title, resale_price, img, _id } = bookProduct;
   console.log(bookProduct);
   const { user } = useContext(AuthContext);
-  const handleSubmit = (event) =>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -24,9 +23,9 @@ const BookingModal = ({ bookProduct, setBookProduct }) => {
       title,
       price,
       img,
-      product_id: _id
-    }
-    fetch(`http://localhost:5000/booking`, {
+      product_id: _id,
+    };
+    fetch(`https://tech-village-server-iffatnur.vercel.app/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,8 +41,7 @@ const BookingModal = ({ bookProduct, setBookProduct }) => {
         }
         setBookProduct(null);
       });
-    
-  }
+  };
   return (
     <div>
       <input type="checkbox" id="book-modal" className="modal-toggle" />
@@ -52,7 +50,7 @@ const BookingModal = ({ bookProduct, setBookProduct }) => {
           <label
             htmlFor="book-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
-            onClick={()=>setBookProduct(null)}
+            onClick={() => setBookProduct(null)}
           >
             ✕
           </label>

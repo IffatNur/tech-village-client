@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import toast from 'react-hot-toast';
-import { FaChevronCircleDown } from 'react-icons/fa';
-import BookingModal from '../../component/BookingModal';
-import { AuthContext } from '../../context/AuthProvider';
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { FaChevronCircleDown } from "react-icons/fa";
+import BookingModal from "../../component/BookingModal";
+import { AuthContext } from "../../context/AuthProvider";
 
-const ProductCard = ({ product, setBookProduct}) => {
-  const {user} = useContext(AuthContext);
+const ProductCard = ({ product, setBookProduct }) => {
+  const { user } = useContext(AuthContext);
   const {
     img,
     seller_name,
@@ -17,20 +17,22 @@ const ProductCard = ({ product, setBookProduct}) => {
     condition,
     phone,
     posted,
-    _id
+    _id,
   } = product;
   const current = new Date();
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
 
-  const handleReport = () =>{
+  const handleReport = () => {
     const itemInfo = {
       product_id: _id,
       img,
-      seller_name,title,resale_price
-    }
-    fetch(`http://localhost:5000/report`, {
+      seller_name,
+      title,
+      resale_price,
+    };
+    fetch(`https://tech-village-server-iffatnur.vercel.app/report`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,11 +43,11 @@ const ProductCard = ({ product, setBookProduct}) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.acknowledged){
+        if (data.acknowledged) {
           toast.success("Thanks For Your Feedback");
         }
       });
-  }
+  };
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl w-3/4 mx-auto my-10">
       <figure className="lg:w-2/4">
@@ -62,12 +64,12 @@ const ProductCard = ({ product, setBookProduct}) => {
               <span className="font-semibold">Condition:</span> {condition}
             </p>
             <p>
-              <span className="font-semibold">Original Price:</span>{" "}
-              $ {original_price}{" "}
+              <span className="font-semibold">Original Price:</span> ${" "}
+              {original_price}{" "}
             </p>
             <p>
-              <span className="font-semibold">Resale Price:</span>{" "}
-              $ {resale_price}{" "}
+              <span className="font-semibold">Resale Price:</span> ${" "}
+              {resale_price}{" "}
             </p>
           </div>
           <hr />

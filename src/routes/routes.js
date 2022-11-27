@@ -11,10 +11,10 @@ import MyProduct from "../Pages/Dashboard/MyProduct/MyProduct";
 import Report from "../Pages/Dashboard/Report/Report";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
-import Login from '../Pages/Login/Login';
+import Login from "../Pages/Login/Login";
 import Payment from "../Pages/Payment/Payment";
 import Products from "../Pages/Products/Products";
-import Signup from '../Pages/Signup/Signup';
+import Signup from "../Pages/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -42,7 +42,9 @@ export const router = createBrowserRouter([
       {
         path: "/category/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://tech-village-server-iffatnur.vercel.app/category/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <Products></Products>
@@ -62,9 +64,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: (
-          <Dashboard></Dashboard>
-        ),
+        element: <Dashboard></Dashboard>,
       },
       {
         path: "/dashboard/myorders",
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addproduct",
-        element: <AddProduct></AddProduct>
+        element: <AddProduct></AddProduct>,
       },
       {
         path: "/dashboard/myproduct",
@@ -98,7 +98,9 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/booking/${params.id}`),
+          fetch(
+            `https://tech-village-server-iffatnur.vercel.app/booking/${params.id}`
+          ),
       },
     ],
   },
