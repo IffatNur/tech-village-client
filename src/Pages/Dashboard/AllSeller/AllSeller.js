@@ -30,8 +30,8 @@ const AllSeller = () => {
   if (isLoading) {
     return <Loader></Loader>;
   }
-  const handleRemove = (email) => {
-    fetch(`https://tech-village-server-iffatnur.vercel.app/user/${email}`, {
+  const handleRemove = (id) => {
+    fetch(`https://tech-village-server-iffatnur.vercel.app/user/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("tech-token")}`,
@@ -90,7 +90,7 @@ const AllSeller = () => {
                 <td>
                   <Link>
                     <button
-                      onClick={() => handleRemove(seller.email)}
+                      onClick={() => handleRemove(seller._id)}
                       className="btn btn-sm border-0 bg-gradient-to-r from-red-700 to-red-900"
                     >
                       Remove
