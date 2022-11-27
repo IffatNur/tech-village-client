@@ -52,12 +52,7 @@ const ProductCard = ({ product, setBookProduct}) => {
         <img src={img} alt="Album" className="w-96 h-64" />
       </figure>
       <div className="card-body lg:w-3/4">
-        <h2 className="card-title font-bold text-2xl">
-          {title}
-          {product.isVerified && (
-            <FaChevronCircleDown className="ml-1 text-blue-700"></FaChevronCircleDown>
-          )}
-        </h2>
+        <h2 className="card-title font-bold text-2xl">{title}</h2>
         <div>
           <div className="mb-5">
             <p>
@@ -68,17 +63,21 @@ const ProductCard = ({ product, setBookProduct}) => {
             </p>
             <p>
               <span className="font-semibold">Original Price:</span>{" "}
-              {original_price}{" "}
+              $ {original_price}{" "}
             </p>
             <p>
               <span className="font-semibold">Resale Price:</span>{" "}
-              {resale_price}{" "}
+              $ {resale_price}{" "}
             </p>
           </div>
           <hr />
           <div className="mt-5 text-gray-500">
-            <small>
-              <span className="font-semibold">Seller:</span> {seller_name} |
+            <small className="flex items-center">
+              <span className="font-semibold mr-1">Seller:</span> {seller_name}{" "}
+              {product.isVerified && (
+                <FaChevronCircleDown className="mx-2 text-blue-700"></FaChevronCircleDown>
+              )}{" "}
+              |
             </small>
             <small>
               {" "}

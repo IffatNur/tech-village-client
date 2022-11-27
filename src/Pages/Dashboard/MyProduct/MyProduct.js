@@ -112,7 +112,7 @@ const MyProduct = () => {
                   </td>
                   <th>
                     <button className="btn btn-ghost btn-xs">
-                      {product.original_price}
+                      ${product.original_price}
                     </button>
                   </th>
                   <td>
@@ -127,9 +127,9 @@ const MyProduct = () => {
                     {!product.status && (
                       <button
                         onClick={() => handleAvailable(product._id)}
-                        className="btn btn-sm"
+                        className="btn btn-sm bg-gradient-to-r from-green-500 to-green-700 border-0"
                       >
-                        In Stock
+                        Available
                       </button>
                     )}
                     {product.status && (
@@ -139,10 +139,11 @@ const MyProduct = () => {
                     )}
                   </td>
                   <td>
-                    {!product.status && (
+                    { (
                       <button
                         onClick={() => handleAdvertise(product._id)}
-                        className="btn btn-sm btn-primary" disabled={product.advertise}
+                        className="btn btn-sm btn-primary"
+                        disabled={product.advertise || product.status}
                       >
                         Advertise
                       </button>

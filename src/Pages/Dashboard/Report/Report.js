@@ -77,7 +77,7 @@ const Report = () => {
                   </td>
                   <td>
                     {report.title}{" "}
-                    <p className="text-sm opacity-50">{report.resale_price}</p>
+                    <p className="text-sm opacity-50">${report.resale_price}</p>
                   </td>
                   <td>
                     <div className="text-sm opacity-50">

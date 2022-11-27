@@ -68,3 +68,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Projects details
+Live link:
+
+adminEmail: snape@gmail.com
+adminPassword: 123456
+
+Features and functionalities:
+* There are three roles: Admin, Buyer and Seller
+* Admin can manage Sellers and Buyers also can verify sellers
+* Sellers can add, delete and advertise their products 
+* Advertised products will be shown on homepage
+* Buyers can book products and purchase 
+* Buyers can report product to admin , admin can delete reported product if he wants
+
+
