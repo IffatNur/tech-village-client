@@ -26,7 +26,6 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.data.display_url);
         const productInfo = {
           img: result.data.display_url,
           seller_name: user.displayName,
@@ -42,7 +41,6 @@ const AddProduct = () => {
           phone: data.phone,
           posted: date,
         };
-        console.log(productInfo);
         fetch(`http://localhost:5000/product`, {
           method: "POST",
           headers: {
@@ -53,7 +51,6 @@ const AddProduct = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.acknowledged) {
               navigate("/dashboard/myproduct");
               toast.success("Product added successfully!");

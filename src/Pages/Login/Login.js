@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import useTitle from '../../Title/Title';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -102,6 +103,7 @@ const Login = () => {
                   </small>
                 )}
               </div>
+              <p>Don't have an account? <Link to='/signup' className='text-yellow-600 font-semibold'>Sign Up</Link></p>
               <div className="form-control mt-4">
                 <button className="btn border-0 bg-yellow-600">Login</button>
                 <button

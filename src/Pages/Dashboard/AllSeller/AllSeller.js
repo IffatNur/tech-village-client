@@ -27,8 +27,8 @@ const AllSeller = () => {
     if (isLoading) {
       return <Loader></Loader>;
     }
-    const handleRemove = (id) => {
-      fetch(`http://localhost:5000/user/${id}`, {
+    const handleRemove = (email) => {
+      fetch(`http://localhost:5000/user/${email}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("tech-token")}`,
@@ -43,9 +43,9 @@ const AllSeller = () => {
         });
     };
 
-    const handleVerify = (id) =>{
-      console.log(id);
-      fetch(`http://localhost:5000/users/${id}`,{
+    const handleVerify = (email) =>{
+      console.log(email);
+      fetch(`http://localhost:5000/users/${email}`,{
         method:'PUT',
         headers:{
           authorization: `Bearer ${localStorage.getItem("tech-token")}`
@@ -87,7 +87,7 @@ const AllSeller = () => {
                   <td>
                     <Link>
                       <button
-                        onClick={() => handleRemove(seller._id)}
+                        onClick={() => handleRemove(seller.email)}
                         className="btn btn-sm border-0 bg-gradient-to-r from-red-700 to-red-900"
                       >
                         Remove
@@ -98,7 +98,6 @@ const AllSeller = () => {
                     <td>
                       <Link>
                         <button
-                          onClick={() => handleVerify(seller._id)}
                           className="btn btn-sm border-0 bg-gradient-to-r from-green-600 to-green-900"
                         >
                           Verified
@@ -110,7 +109,7 @@ const AllSeller = () => {
                     <td>
                       <Link>
                         <button
-                          onClick={() => handleVerify(seller._id)}
+                          onClick={() => handleVerify(seller.email)}
                           className="btn btn-sm border-0 bg-gradient-to-r from-blue-700 to-blue-900"
                         >
                           Unverified

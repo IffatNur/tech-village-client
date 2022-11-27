@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useTitle from '../../Title/Title';
 
@@ -105,17 +106,24 @@ const Signup = () => {
                 />
                 {errors.password && <small>{errors.password?.message}</small>}
               </div>
+              <p>
+                Already have an account?{" "}
+                <Link to="/login" className="text-yellow-600 font-semibold">
+                  Sign In
+                </Link>
+              </p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Sign up as</span>
                 </label>
-                <div className='flex justify-around'>
+                <div className="flex justify-around">
                   <div className="flex items-center my-2">
                     <input
                       type="radio"
                       name="role"
                       className="radio radio-primary mr-2"
-                      onClick={()=>handleRadio('seller')} required
+                      onClick={() => handleRadio("seller")}
+                      required
                     />
                     <small>Seller</small>
                   </div>
@@ -124,7 +132,8 @@ const Signup = () => {
                       type="radio"
                       name="role"
                       className="radio radio-primary mr-2"
-                      onClick={()=>handleRadio('buyer')} required
+                      onClick={() => handleRadio("buyer")}
+                      required
                     />
                     <small>Buyer</small>
                   </div>

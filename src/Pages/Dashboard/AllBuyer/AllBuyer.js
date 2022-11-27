@@ -49,7 +49,6 @@ const AllBuyer = () => {
                 <th>Email</th>
                 <th>Role</th>
                 <th>Remove Buyer</th>
-                <th>Verify Buyer</th>
               </tr>
             </thead>
             <tbody>
@@ -66,15 +65,6 @@ const AllBuyer = () => {
                         className="btn btn-sm border-0 bg-gradient-to-r from-red-700 to-red-900"
                       >
                         Remove
-                      </button>
-                    </Link>
-                  </td>
-                  <td>
-                    <Link>
-                      <button
-                        className="btn btn-sm border-0 bg-gradient-to-r from-yellow-500 to-orange-600"
-                      >
-                        Verify
                       </button>
                     </Link>
                   </td>

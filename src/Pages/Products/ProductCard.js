@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaChevronCircleDown } from 'react-icons/fa';
 import BookingModal from '../../component/BookingModal';
+import { AuthContext } from '../../context/AuthProvider';
 
 const ProductCard = ({ product, setBookProduct}) => {
+  const {user} = useContext(AuthContext);
   const {
     img,
     seller_name,
@@ -49,7 +52,12 @@ const ProductCard = ({ product, setBookProduct}) => {
         <img src={img} alt="Album" className="w-96 h-64" />
       </figure>
       <div className="card-body lg:w-3/4">
-        <h2 className="card-title font-bold text-2xl">{title}</h2>
+        <h2 className="card-title font-bold text-2xl">
+          {title}
+          {product.isVerified && (
+            <FaChevronCircleDown className="ml-1 text-blue-700"></FaChevronCircleDown>
+          )}
+        </h2>
         <div>
           <div className="mb-5">
             <p>
@@ -83,19 +91,25 @@ const ProductCard = ({ product, setBookProduct}) => {
             <br />
             <small>
               {" "}
-              <span className="font-semibold">Posted on:</span> {posted? posted: date}
+              <span className="font-semibold">Posted on:</span>{" "}
+              {posted ? posted : date}
             </small>
           </div>
         </div>
         <div className="card-actions justify-end">
-          <label
-            htmlFor="book-modal"
-            className="btn border-0 bg-gradient-to-r from-blue-700 to-gray-500"
-            onClick={()=>setBookProduct(product)}
-          >
-            Book Now
-          </label>
-          <button className="btn" onClick={()=>handleReport(_id)}>Report to Admin</button>
+          {user?.email && (
+            <label
+              htmlFor="book-modal"
+              className="btn border-0 bg-gradient-to-r from-blue-700 to-gray-500"
+              onClick={() => setBookProduct(product)}
+            >
+              Book Now
+            </label>
+          )}
+
+          <button className="btn" onClick={() => handleReport(_id)}>
+            Report to Admin
+          </button>
         </div>
       </div>
     </div>
