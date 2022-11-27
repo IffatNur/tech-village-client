@@ -71,7 +71,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 ### Projects details
-Live link:
+
+Live link: https://tech-village-7602d.web.app/
 
 adminEmail: snape@gmail.com
 adminPassword: 123456
